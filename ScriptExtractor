@@ -1,0 +1,24 @@
+#!/bin/bash
+#Este script extrae todas los main y activity de un programa
+oldIFS=$IFS     # conserva el separador de campo
+IFS=$'\n'     # nuevo separador de campo, el caracter fin de línea
+for line in $(cat $HOME/temp/n.txt)
+do
+  am start --user 0 -n $line 2>> $HOME/temp/error.txt > /dev/null 2>&1
+  am start -a android.intent.action.VIEW -d "${line}" 2>> $HOME/temp/error.txt > /dev/null 2>&1
+  sleep 1
+  clear
+echo -e "\033[0;31m¿Funcionó? y or n\033[0m ${line}"
+read enter
+if [ "$enter" = "y" ];
+then
+echo "¿Qué hace?"
+read funcion
+echo -e "Este comando abre: ${funcion} \n ${line}" >> $HOME/temp/funciona.txt;
+echo "${line}" >> $HOME/temp/funcionaCom.txt;
+else
+echo -e "Este comando no abre: ${funcion} \n ${line}" >> $HOME/temp/Nofunciona.txt;
+fi
+done
+IFS=$old_IFS     # restablece el separador de campo predeterminado
+am start --user 0 -n  com.termux/.HomeActivity
