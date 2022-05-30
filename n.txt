@@ -1,4 +1,4 @@
-#Este es el resultado del scriptextractor1 en miui 11
+#Este es el resultado del ScriptExtractorPaquetes en miui 11
 com.android.bluetooth/.opp.BluetoothOppReceiver
 com.android.bluetooth/.opp.BluetoothOppTransferHistory
 com.android.bluetooth/.pan.PanService
